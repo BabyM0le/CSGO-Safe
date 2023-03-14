@@ -1,6 +1,6 @@
 import puppeteer from 'puppeteer';
 
-export async function CsgoRepInfo(steamId) {
+export async function RequestCsgoRepData(steamId) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 

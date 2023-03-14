@@ -1,3 +1,3 @@
-import { CsgoRepInfo } from './components/CsgoRep/RequestHtml.js';
+import { RequestCsgoRepData } from './components/CsgoRep/RequestData.js';
 const steamId = '76561199095221628';
-console.log(await CsgoRepInfo(steamId));
+console.log(await RequestCsgoRepData(steamId));
