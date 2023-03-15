@@ -9,8 +9,8 @@ export function HandleCsgoRepData(data) {
     $('.price-green').each((index, element) => {
     const priceText = $(element).text().replace('$', '').replace(' ', '').trim(); // get the text and remove '$' and whitespace
     const priceNumber = parseFloat(priceText); // convert the text to a number
-    if (!isNaN(priceNumber)) { // check if the number is valid (not NaN)
-        totalPrice += priceNumber; // add the number to the total
+    if (!isNaN(priceNumber)) { // check if the number is valid
+        totalPrice += priceNumber;
     }
     });
 
