@@ -10,9 +10,9 @@ export async function RequestCsgoRepData(steamId) {
     await page.waitForSelector('.loader', { hidden: true });
 
     // Return the fully loaded page
-    const content = await (async (page) => {
+    const content = await (async page => {
         while (true) {
-            await new Promise((resolve) => setTimeout(resolve, 200));
+            await new Promise(resolve => setTimeout(resolve, 200));
             const button = await page.$('.btn');
             if (button) {
                 // Click all the 'load more' buttons
@@ -22,7 +22,7 @@ export async function RequestCsgoRepData(steamId) {
             }
         }
     })(page);
-    
+
     await browser.close();
 
     return content;
