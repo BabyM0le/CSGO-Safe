@@ -1,7 +1,7 @@
 import cheerio from 'cheerio';
 
 export class HandleCsgoRepHTML {
-    GetTotalValue(CsgoRepHTML) {
+    GetTotalDeals(CsgoRepHTML) {
         const loadedHTML = cheerio.load(CsgoRepHTML);
         let totalPrice = 0;
         loadedHTML('.price-green').each((index, element) => {
@@ -19,4 +19,22 @@ export class HandleCsgoRepHTML {
 
         return totalPrice.toFixed(2);
     }
+    GetPositiveReps(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+
+        return loadedHTML('.circle.green span').text();
+    }
+    GetNeutralReps(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+
+        return loadedHTML('.circle.yellow span').text();
+    }
+    GetBannedStatus(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+
+        return loadedHTML('.ban').text() ? true : false;
+    }
+    GetCashDeals(CsgoRepHTML) {}
+    GetCryptoDeals(CsgoRepHTML) {}
+    GetBalanceDeals(CsgoRepHTML) {}
 }
