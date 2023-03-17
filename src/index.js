@@ -1,9 +1,10 @@
-import { RequestCsgoRepData } from './components/CsgoRep/RequestData.js';
-import { HandleCsgoRepData } from './components/CsgoRep/HandleData.js';
+import { RequestCsgoRepHTML } from './components/CsgoRep/RequestData.js';
+import { HandleCsgoRepHTML } from './components/CsgoRep/HandleData.js';
 
 const steamId = '76561199095221628';
 const testing = async () => {
-    let data = await RequestCsgoRepData(steamId);
-    console.log(await HandleCsgoRepData(data));
+    const CsgoRepHTML = await RequestCsgoRepHTML(steamId);
+    const HandledData = new HandleCsgoRepHTML();
+    console.log(HandledData.GetTotalValue(CsgoRepHTML));
 };
 testing();
