@@ -1,1 +1,1 @@
-A Discord bot used to check users reputation via csgo-rep (In development)
+A website used to check users reputation via csgo-rep & steamrep (In development)
