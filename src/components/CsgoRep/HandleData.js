@@ -34,7 +34,19 @@ export class HandleCsgoRepHTML {
 
         return loadedHTML('.ban').text() ? true : false;
     }
-    GetCashDeals(CsgoRepHTML) {}
-    GetCryptoDeals(CsgoRepHTML) {}
-    GetBalanceDeals(CsgoRepHTML) {}
+    GetCashDeals(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+
+        return loadedHTML('.summary-wrapper .el:nth-child(1) span').text();
+    }
+    GetCryptoDeals(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+
+        return loadedHTML('.summary-wrapper .el:nth-child(2) span').text();
+    }
+    GetBalanceDeals(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+
+        return loadedHTML('.summary-wrapper .el:nth-child(3) span').text();
+    }
 }
