@@ -10,24 +10,24 @@ export class HandleCsgoRepHTML {
                 .replace('$', '')
                 .replace(' ', '')
                 .trim(); // get the text and remove '$' and whitespace
-            const priceNumber = parseFloat(priceText); // convert the text to a number
+            const priceNumber = parseInt(priceText); // convert the text to a number
             if (!isNaN(priceNumber)) {
                 // check if the number is valid
                 totalPrice += priceNumber;
             }
         });
 
-        return totalPrice.toFixed(2);
+        return totalPrice;
     }
-    GetPositiveReps(CsgoRepHTML) {
+    GetPositiveDeals(CsgoRepHTML) {
         const loadedHTML = cheerio.load(CsgoRepHTML);
 
-        return loadedHTML('.circle.green span').text();
+        return parseInt(loadedHTML('.circle.green span').text());
     }
-    GetNeutralReps(CsgoRepHTML) {
+    GetNeutralDeals(CsgoRepHTML) {
         const loadedHTML = cheerio.load(CsgoRepHTML);
 
-        return loadedHTML('.circle.yellow span').text();
+        return parseInt(loadedHTML('.circle.yellow span').text());
     }
     GetBannedStatus(CsgoRepHTML) {
         const loadedHTML = cheerio.load(CsgoRepHTML);
@@ -37,16 +37,41 @@ export class HandleCsgoRepHTML {
     GetCashDeals(CsgoRepHTML) {
         const loadedHTML = cheerio.load(CsgoRepHTML);
 
-        return loadedHTML('.summary-wrapper .el:nth-child(1) span').text();
+        return parseInt(
+            loadedHTML('.summary-wrapper .el:nth-child(1) span').text()
+        );
     }
     GetCryptoDeals(CsgoRepHTML) {
         const loadedHTML = cheerio.load(CsgoRepHTML);
 
-        return loadedHTML('.summary-wrapper .el:nth-child(2) span').text();
+        return parseInt(
+            loadedHTML('.summary-wrapper .el:nth-child(2) span').text()
+        );
     }
     GetBalanceDeals(CsgoRepHTML) {
         const loadedHTML = cheerio.load(CsgoRepHTML);
 
-        return loadedHTML('.summary-wrapper .el:nth-child(3) span').text();
+        return parseInt(
+            loadedHTML('.summary-wrapper .el:nth-child(3) span').text()
+        );
+    }
+    GetAverageRepsOfDeals(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+
+        let total = 0;
+        loadedHTML('.reviews-wrapper .amount').each(function () {
+            const amountText = cheerio(this).text().trim();
+            const amount = parseFloat(amountText);
+            if (!isNaN(amount)) {
+                total += amount;
+            }
+        });
+
+        return parseInt(
+            (
+                total / this.GetPositiveDeals(CsgoRepHTML) +
+                this.GetNeutralDeals(CsgoRepHTML)
+            ).toFixed(2)
+        );
     }
 }
