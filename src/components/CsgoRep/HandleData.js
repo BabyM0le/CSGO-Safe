@@ -74,4 +74,24 @@ export class HandleCsgoRepHTML {
             ).toFixed(2)
         );
     }
+    GetAmountOfGoingFirst(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+        let count = 0;
+
+        loadedHTML('img.position-1').each((index, element) => {
+            count++;
+        });
+
+        return count;
+    }
+    GetAmountOfGoingSecond(CsgoRepHTML) {
+        const loadedHTML = cheerio.load(CsgoRepHTML);
+        let count = 0;
+
+        loadedHTML('img.position-2').each((index, element) => {
+            count++;
+        });
+
+        return count;
+    }
 }
