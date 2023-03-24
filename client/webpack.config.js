@@ -38,6 +38,29 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.svg$/,
+                use: [
+                    {
+                        loader: 'svg-inline-loader',
+                        options: {
+                            removeTags: true,
+                            removingTags: ['title', 'desc'],
+                            removeSVGTagAttrs: true,
+                        },
+                    },
+                    {
+                        loader: 'svgo-loader',
+                        options: {
+                            plugins: [
+                                {
+                                    removeViewBox: false,
+                                },
+                            ],
+                        },
+                    },
+                ],
+            },
         ],
     },
     devServer: {
