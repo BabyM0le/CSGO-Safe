@@ -9,3 +9,33 @@
         font-family: 'Kanit', sans-serif;
     }
 }
+
+.animate-navbar-up {
+    animation-name: navbar-up;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+
+.animate-navbar-down {
+    animation-name: navbar-down;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes navbar-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes navbar-down {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
